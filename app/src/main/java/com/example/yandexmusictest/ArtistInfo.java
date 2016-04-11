@@ -24,6 +24,7 @@ public class ArtistInfo extends AppCompatActivity {
         initElements();
         loadData(); // получаем данные
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out); //анимация перехода
     }
 
     @Override
@@ -62,5 +63,10 @@ public class ArtistInfo extends AppCompatActivity {
         tv_genres = (TextView)findViewById(R.id.tv_genres_full);
         tv_number = (TextView)findViewById(R.id.tv_number_full);
         tv_biography = (TextView)findViewById(R.id.tv_biography);
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out); //анимация перехода
     }
 }
