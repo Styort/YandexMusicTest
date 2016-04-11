@@ -13,22 +13,23 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:textSize="18dp"
+        android:textColor="@color/textColorBlack"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="100dp"/>
+        android:layout_marginLeft="105dp"/>
     <TextView
         android:id="@+id/genres_tv"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:textSize="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="105dp"
         android:textColor="@color/textColorLight"/>
     <TextView
         android:id="@+id/number_tv"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:textSize="16dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="105dp"
         android:textColor="@color/textColorLight"/>
 </RelativeLayout>

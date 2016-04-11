@@ -25,19 +25,24 @@ public class YandexTask extends AsyncTask {
             URL url = new URL("http://cache-default03d.cdn.yandex.net/download.cdn.yandex.net/mobilization-2016/artists.json");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.connect();
+            connection.connect();//соединяемся с json
             String response = CharStreams.toString(new InputStreamReader(connection.getInputStream())); //преобразовываем полученные данные в строку
-            JSONArray jArray = new JSONArray(response);
-            Artist.deleteAll(Artist.class);
-            for (int i=0;i<jArray.length();i++){
+            JSONArray jArray = new JSONArray(response); //т.к. данные json в нашем случае это один большой массив, создаем JSONArray.
+            Artist.deleteAll(Artist.class); //удаляем все элемент БД.
+            for (int i=0;i<jArray.length();i++){ //считываем все элементы в json-массиве в бд.
                 JSONObject object = jArray.getJSONObject(i);
                 int id = object.getInt("id");
                 String name = object.getString("name");
                 JSONArray genresArr = object.getJSONArray("genres");
-                ArrayList<String> genres = new ArrayList<>();
+                String genres = "";
                 for(int j=0;j<genresArr.length();j++){
                     String genre = genresArr.getString(j);
-                    genres.add(genre);
+                    if(j!=genresArr.length()-1){
+                        genres += genre +",";
+                    }
+                    else {
+                        genres += genre;
+                    }
                 }
                 int tracks = object.getInt("tracks");
                 int albums = object.getInt("albums");
@@ -47,7 +52,7 @@ public class YandexTask extends AsyncTask {
                 String bigCover = coversObj.getString("big");
 
                 Artist artist = new Artist(albums ,bigCover,smallCover,description,genres,id,name,tracks);
-                artist.save();
+                artist.save(); //сохраняем данные в бд
             }
 
         } catch (Exception e) {

@@ -1,8 +1,12 @@
 package com.example.yandexmusictest;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +20,7 @@ public class ArtistInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist_info);
         initElements();
-        loadData();
+        loadData(); // получаем данные
     }
 
     private void loadData() {
@@ -24,11 +28,17 @@ public class ArtistInfo extends AppCompatActivity {
         String bigImage = intent.getStringExtra("image");
         String numbers = intent.getStringExtra("numbers");
         String biography = intent.getStringExtra("biography");
-        //String genres = data.getStringExtra("genres");
-        //tv_genres.setText(genres);
+        String genres = intent.getStringExtra("genres");
+        tv_genres.setText(genres);
         tv_number.setText(numbers);
         tv_biography.setText(biography);
-        Glide.with(this).load(bigImage).into(bigCover);//подгружаем фотографию
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+
+        Glide.with(this).load(bigImage).override(width,400).centerCrop().into(bigCover);//подгружаем фотографию
     }
 
     private void initElements() {
@@ -36,14 +46,5 @@ public class ArtistInfo extends AppCompatActivity {
         tv_genres = (TextView)findViewById(R.id.tv_genres_full);
         tv_number = (TextView)findViewById(R.id.tv_number_full);
         tv_biography = (TextView)findViewById(R.id.tv_biography);
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK){
-
-        }
     }
 }

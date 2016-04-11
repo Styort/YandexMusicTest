@@ -9,15 +9,15 @@ import java.util.ArrayList;
  */
 public class Artist  extends SugarRecord{
     public int id;
-    public String name;
-    public ArrayList<String> genres;
-    public int tracks;
-    public int albums;
-    public String description;
-    public String coverSmall;
-    public String coverBig;
+    public String name; //имя
+    public String genres; //жанр
+    public int tracks; //количество треков
+    public int albums; //количество альбомов
+    public String description; //биография
+    public String coverSmall; //маленькая картинка
+    public String coverBig; //большая картинка
 
-    public Artist(int albums, String coverBig, String coverSmall, String description, ArrayList<String> genres, int id, String name, int tracks) {
+    public Artist(int albums, String coverBig, String coverSmall, String description, String genres, int id, String name, int tracks) {
         this.albums = albums;
         this.coverBig = coverBig;
         this.coverSmall = coverSmall;

@@ -32,14 +32,7 @@ public class ArtistAdapter extends ArrayAdapter {
         LayoutInflater inflater = context.getLayoutInflater();
         convertView = inflater.inflate(R.layout.list_item_artist,null);
         ((TextView) convertView.findViewById(R.id.name_tv)).setText(artists.get(position).name); // добавляем имя
-        String genres = "";
-        try{
-            for (String genre :artists.get(position).genres){ //считываем жанры
-                genres += genre + ",";
-            }
-        }catch (Exception ex){
-
-        }
+        String genres = artists.get(position).genres;
         ((TextView) convertView.findViewById(R.id.genres_tv)).setText(genres); //добавляем жанры
         String numbers = artists.get(position).albums+" альбомов, "+artists.get(position).tracks+" треков.";
         ((TextView) convertView.findViewById(R.id.number_tv)).setText(numbers); //добавляем количество альбомов и треков

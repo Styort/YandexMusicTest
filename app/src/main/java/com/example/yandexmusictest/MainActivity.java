@@ -23,19 +23,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SugarContext.init(this);
         task =new YandexTask();
-        task.execute(this);
+        task.execute(this); //вызываем YandexTask(подгрузка данных из json)
         initAdapter();
-        artists = Artist.listAll(Artist.class);
+        artists = Artist.listAll(Artist.class); //получаем все элементы из бд
         artistList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //обрабатываем нажатие на элемент списка
                 Intent intent = new Intent(MainActivity.this,ArtistInfo.class);
-                intent.putExtra("image",artists.get(position).coverBig.toString());
-                //intent.putExtra("genres",artists.get(position).genres.toString());
+                intent.putExtra("image",artists.get(position).coverBig.toString()); //передаем данные из бд в другое активити
+                intent.putExtra("genres",artists.get(position).genres.toString());
                 String numbers = artists.get(position).albums+" альбомов, "+artists.get(position).tracks+" треков.";
                 intent.putExtra("numbers", numbers);
                 intent.putExtra("biography", artists.get(position).description.toString());
-                startActivity(intent);
+                startActivity(intent); //запускаем активити с информацией о певце 
                 finish();
 
             }
