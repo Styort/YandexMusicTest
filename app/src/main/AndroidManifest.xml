@@ -31,7 +31,13 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.example.yandexmusictest.models" />
 
-        <activity android:name=".ArtistInfo"></activity>
+        <activity
+            android:name=".ArtistInfo"
+            android:parentActivityName="com.example.yandexmusictest.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.yandexmusictest.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

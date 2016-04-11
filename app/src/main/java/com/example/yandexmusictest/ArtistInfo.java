@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,10 +23,24 @@ public class ArtistInfo extends AppCompatActivity {
         setContentView(R.layout.activity_artist_info);
         initElements();
         loadData(); // получаем данные
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadData() {
         Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        getSupportActionBar().setTitle(name);
         String bigImage = intent.getStringExtra("image");
         String numbers = intent.getStringExtra("numbers");
         String biography = intent.getStringExtra("biography");

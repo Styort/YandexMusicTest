@@ -31,13 +31,12 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //обрабатываем нажатие на элемент списка
                 Intent intent = new Intent(MainActivity.this,ArtistInfo.class);
                 intent.putExtra("image",artists.get(position).coverBig.toString()); //передаем данные из бд в другое активити
+                intent.putExtra("name",artists.get(position).name.toString());
                 intent.putExtra("genres",artists.get(position).genres.toString());
                 String numbers = artists.get(position).albums+" альбомов, "+artists.get(position).tracks+" треков.";
                 intent.putExtra("numbers", numbers);
                 intent.putExtra("biography", artists.get(position).description.toString());
-                startActivity(intent); //запускаем активити с информацией о певце 
-                finish();
-
+                startActivity(intent); //запускаем активити с информацией о певце
             }
         });
     }
