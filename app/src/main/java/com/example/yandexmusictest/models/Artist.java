@@ -2,8 +2,6 @@ package com.example.yandexmusictest.models;
 
 import com.orm.SugarRecord;
 
-import java.util.ArrayList;
-
 /**
  * Created by Виктор on 05.04.2016.
  */
@@ -27,5 +25,6 @@ public class Artist  extends SugarRecord{
         this.name = name;
         this.tracks = tracks;
     }
+
     public Artist(){}
 }

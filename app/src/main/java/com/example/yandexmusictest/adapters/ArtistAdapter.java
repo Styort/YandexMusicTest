@@ -38,7 +38,6 @@ public class ArtistAdapter extends ArrayAdapter {
         ((TextView) convertView.findViewById(R.id.number_tv)).setText(numbers); //добавляем количество альбомов и треков
         Glide.with(context).load(artists.get(position).coverSmall).into(
                 (ImageView)convertView.findViewById(R.id.artist_photo_iv));//подгружаем фотографию
-
         return convertView;
     }
 }

@@ -1,13 +1,9 @@
 package com.example.yandexmusictest;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +29,7 @@ public class ArtistInfo extends AppCompatActivity {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
+                overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out); //анимация перехода
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -50,12 +47,7 @@ public class ArtistInfo extends AppCompatActivity {
         tv_number.setText(numbers);
         tv_biography.setText(biography);
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-
-        Glide.with(this).load(bigImage).override(width,400).centerCrop().into(bigCover);//подгружаем фотографию
+        Glide.with(this).load(bigImage).centerCrop().into(bigCover);//подгружаем фотографию
     }
 
     private void initElements() {
