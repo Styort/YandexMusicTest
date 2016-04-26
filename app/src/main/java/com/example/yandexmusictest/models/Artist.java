@@ -26,5 +26,13 @@ public class Artist  extends SugarRecord{
         this.tracks = tracks;
     }
 
+    public String getGenres() {
+        return genres;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public Artist(){}
 }
